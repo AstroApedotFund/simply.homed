@@ -3,26 +3,33 @@ import Navigation from '@/components/Navigation';
 import CategoryBanner from '@/components/CategoryBanner';
 import BlogCard from '@/components/BlogCard';
 import Footer from '@/components/Footer';
-import { BLOG_POSTS, CATEGORIES } from '../../shared/data';
+import { useCategoryBySlug, useBlogPostsByCategory } from '@/lib/hooks';
 import NotFound from './not-found';
 
 export default function CategoryPage() {
   const [, params] = useRoute('/category/:slug');
-  const category = CATEGORIES.find(c => c.slug === params?.slug);
+  const { data: category, isLoading: categoryLoading } = useCategoryBySlug(params?.slug || '');
+  const { data: categoryPosts = [], isLoading: postsLoading } = useBlogPostsByCategory(params?.slug || '');
   
+  if (categoryLoading || postsLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <p className="text-muted-foreground">Loading...</p>
+      </div>
+    );
+  }
+
   if (!category) {
     return <NotFound />;
   }
-
-  const categoryPosts = BLOG_POSTS.filter(post => post.categoryId === category.id);
 
   return (
     <div className="min-h-screen flex flex-col">
       <Navigation />
       <main className="flex-1">
         <CategoryBanner
-          image={category.banner}
-          imageAlt={`${category.name} category banner`}
+          image={category.banner || ''}
+          imageAlt={category.bannerAlt || `${category.name} category banner`}
           title={category.name}
           description={category.description}
         />
@@ -32,7 +39,7 @@ export default function CategoryPage() {
             {categoryPosts.length > 0 ? (
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {categoryPosts.map((post) => (
-                  <BlogCard key={post.id} post={post} />
+                  <BlogCard key={post._id} post={post} />
                 ))}
               </div>
             ) : (

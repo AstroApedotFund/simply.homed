@@ -1,10 +1,12 @@
 import Navigation from '@/components/Navigation';
 import ProductCard from '@/components/ProductCard';
 import Footer from '@/components/Footer';
-import { PRODUCTS } from '../../shared/data';
+import { useProducts } from '@/lib/hooks';
 import { AlertCircle } from 'lucide-react';
 
 export default function Shop() {
+  const { data: products = [] } = useProducts();
+
   return (
     <div className="min-h-screen flex flex-col">
       <Navigation />
@@ -32,8 +34,8 @@ export default function Shop() {
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {PRODUCTS.map((product) => (
-                <ProductCard key={product.id} product={product} />
+              {products.map((product) => (
+                <ProductCard key={product._id} product={product} />
               ))}
             </div>
           </div>

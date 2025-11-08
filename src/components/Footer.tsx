@@ -1,14 +1,13 @@
 import { Link } from 'wouter';
 import { Mail } from 'lucide-react';
-import { SiInstagram, SiPinterest, SiFacebook, SiX } from 'react-icons/si';
+import { SiInstagram, SiPinterest, SiTiktok } from 'react-icons/si';
 import { FOOTER_DATA, SITE_NAME } from '../../shared/data';
 
 export default function Footer() {
   const socialIcons = {
     instagram: SiInstagram,
     pinterest: SiPinterest,
-    facebook: SiFacebook,
-    twitter: SiX,
+    tiktok: SiTiktok
   };
 
   return (

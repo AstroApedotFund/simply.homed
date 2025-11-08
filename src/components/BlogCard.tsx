@@ -3,11 +3,11 @@ import { Clock, Heart, Bookmark } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { CATEGORIES, type BlogPost } from '../../shared/data';
+import type { BlogPostPreview } from '@/lib/types';
 import { useState } from 'react';
 
 interface BlogCardProps {
-  post: BlogPost;
+  post: BlogPostPreview;
   featured?: boolean;
 }
 
@@ -17,7 +17,6 @@ export default function BlogCard({ post, featured }: BlogCardProps) {
   const [likes, setLikes] = useState(post.reactions.likes);
   const [bookmarks, setBookmarks] = useState(post.reactions.bookmarks);
 
-  const category = CATEGORIES.find(c => c.id === post.categoryId);
   const aspectRatio = featured ? 'aspect-[4/3]' : 'aspect-video';
 
   const handleLike = (e: React.MouseEvent) => {
@@ -43,9 +42,9 @@ export default function BlogCard({ post, featured }: BlogCardProps) {
             alt={post.coverImageAlt}
             className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
           />
-          {category && (
+          {post.category && (
             <Badge className="absolute top-4 left-4 bg-primary text-primary-foreground">
-              {category.name}
+              {post.category.name}
             </Badge>
           )}
         </div>

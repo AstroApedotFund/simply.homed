@@ -1,14 +1,16 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import BlogCard from './BlogCard';
-import { BLOG_POSTS, CATEGORIES } from '../../shared/data';
+import { useBlogPosts, useCategories } from '@/lib/hooks';
 
 export default function LatestStories() {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const { data: allPosts = [] } = useBlogPosts();
+  const { data: categories = [] } = useCategories();
 
   const filteredPosts = selectedCategory === 'all'
-    ? BLOG_POSTS
-    : BLOG_POSTS.filter(post => post.categoryId === selectedCategory);
+    ? allPosts
+    : allPosts.filter(post => post.category._id === selectedCategory);
 
   return (
     <section className="py-16 mt-8 bg-background">
@@ -29,14 +31,14 @@ export default function LatestStories() {
           >
             All Stories
           </Button>
-          {CATEGORIES.map((category) => (
+          {categories.map((category) => (
             <Button
-              key={category.id}
-              variant={selectedCategory === category.id ? 'default' : 'outline'}
+              key={category._id}
+              variant={selectedCategory === category._id ? 'default' : 'outline'}
               size="sm"
-              onClick={() => setSelectedCategory(category.id)}
+              onClick={() => setSelectedCategory(category._id)}
               data-testid={`button-filter-${category.slug}`}
-              className={selectedCategory === category.id ? 'bg-primary text-primary-foreground' : ''}
+              className={selectedCategory === category._id ? 'bg-primary text-primary-foreground' : ''}
             >
               {category.name}
             </Button>
@@ -45,7 +47,7 @@ export default function LatestStories() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredPosts.map((post) => (
-            <BlogCard key={post.id} post={post} />
+            <BlogCard key={post._id} post={post} />
           ))}
         </div>
       </div>

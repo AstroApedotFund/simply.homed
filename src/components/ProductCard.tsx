@@ -2,7 +2,7 @@ import { ExternalLink } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { type Product } from '../../shared/data';
+import type { Product } from '@/lib/types';
 
 interface ProductCardProps {
   product: Product;
@@ -33,13 +33,13 @@ export default function ProductCard({ product }: ProductCardProps) {
           {product.description}
         </p>
         <div className="flex items-center justify-between">
-          <span className="font-semibold text-lg text-foreground">
+          {/** <span className="font-semibold text-lg text-foreground">
             {product.price}
-          </span>
+          </span> */}
           <Button
             size="sm"
             onClick={handleClick}
-            data-testid={`button-view-product-${product.id}`}
+            data-testid={`button-view-product-${product._id}`}
             className="gap-2"
           >
             View on Amazon

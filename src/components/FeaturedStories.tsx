@@ -1,9 +1,13 @@
 import BlogCard from './BlogCard';
-import { BLOG_POSTS } from '../../shared/data';
+import { useFeaturedBlogPosts } from '@/lib/hooks';
 
 export default function FeaturedStories() {
-  const featuredPost = BLOG_POSTS[1];
-  const editorPicks = [BLOG_POSTS[0], BLOG_POSTS[5]];
+  const { data: posts = [] } = useFeaturedBlogPosts(3);
+  
+  const featuredPost = posts[0];
+  const editorPicks = posts.slice(1, 3);
+
+  if (!featuredPost) return null;
 
   return (
     <section id="featured-stories" className="py-16 pb-20 bg-card">
@@ -29,7 +33,7 @@ export default function FeaturedStories() {
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 gap-6">
               {editorPicks.map((post) => (
-                <BlogCard key={post.id} post={post} />
+                <BlogCard key={post._id} post={post} />
               ))}
             </div>
           </div>

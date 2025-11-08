@@ -8,7 +8,7 @@ import smartLiving from '../attached_assets/Smart_living_technology_170b2cb5.png
 import decorStyle from '../attached_assets/Decor_and_style_cfec2976.png';
 import newsletterBg from '../attached_assets/Newsletter_background_image_0c5dd776.png';
 
-export const SITE_NAME = "Haven & Hearth";
+export const SITE_NAME = "Simply Homed";
 
 export const CATEGORIES = [
   { id: '1', name: 'Décor & Style', slug: 'decor-style', banner: decorStyle, description: 'Elevate your space with timeless design inspiration' },
@@ -20,17 +20,17 @@ export const CATEGORIES = [
 
 export const HERO_SECTION = {
   image: heroBanner,
-  imageAlt: 'Modern minimalist living room with natural lighting and warm earth tones',
-  heading: 'Welcome to Haven & Hearth',
-  subheading: 'Where thoughtful design meets everyday living'
+  imageAlt: 'Chic minimalist living room in neutral tones featuring a beige sofa with a chunky knit throw, wooden coffee table with candles and books, and warm natural sunlight through sheer curtains — cozy, elegant, and inviting home interior for Simply Homed.',
+  heading: 'Elevate Everyday Living! The Simply Homed Way',
+  subheading: 'For homes that feel as good as they look.'
 };
 
 export const NEWSLETTER_SECTION = {
   backgroundImage: newsletterBg,
-  imageAlt: 'Warm and inviting home interior with bokeh lighting effect',
-  heading: 'Join Our Community',
-  description: 'Get weekly inspiration, expert tips, and exclusive content delivered to your inbox',
-  cta: 'Subscribe Now'
+  imageAlt: 'Cozy neutral flat lay featuring a beige coffee mug, lit candle, stack of Simply Homed newsletters, and minimalist home décor on a soft knitted blanket — warm, elegant, and inviting lifestyle aesthetic.',
+  heading: '✨ Join Our Cozy Circle',
+  description: 'Get the latest home styling tips, organization hacks, smart living finds, and Simply Homed exclusives delivered straight to your inbox. ',
+  cta: 'Subscribe'
 };
 
 export interface BlogPost {
@@ -302,16 +302,15 @@ export const PRODUCTS: Product[] = [
 export const FOOTER_DATA = {
   about: {
     title: 'About',
-    content: 'Haven & Hearth is your trusted source for thoughtful living inspiration. We believe that a well-designed home nurtures well-lived lives.'
+    content: 'Simply Homed is your cozy corner on the internet for all things home, style, and smart living. We inspire beautiful, intentional spaces with a dash of fun and everyday elegance.'
   },
   contact: {
     title: 'Contact',
-    email: 'hello@havenandhearth.com',
+    email: 'hellosimplyhomed@gmail.com',
     socials: [
-      { name: 'Instagram', url: 'https://instagram.com', icon: 'instagram' },
-      { name: 'Pinterest', url: 'https://pinterest.com', icon: 'pinterest' },
-      { name: 'Facebook', url: 'https://facebook.com', icon: 'facebook' },
-      { name: 'Twitter', url: 'https://twitter.com', icon: 'twitter' }
+      { name: 'Instagram', url: 'https://www.instagram.com/simply.homed.co?igsh=bmlzeXF3c2dnZTA5', icon: 'instagram' },
+      { name: 'Pinterest', url: 'https://pin.it/5nlkz8I4b', icon: 'pinterest' },
+      { name: 'Tiktok', url: 'https://www.tiktok.com/@simply.homed.co?_r=1&_d=edjab83k0i522l&sec_uid=MS4wLjABAAAA0wMipZuCIWzjdmtsSvWp7wTQGsxOMWjUeWQGY1BAt1kd77RfbkxJH6VwJEXSkZoN&share_author_id=7533629708325929989&sharer_language=en&source=h5_m&u_code=elhh68mm03c9gk&timestamp=1762345314&user_id=7533629708325929989&sec_user_id=MS4wLjABAAAA0wMipZuCIWzjdmtsSvWp7wTQGsxOMWjUeWQGY1BAt1kd77RfbkxJH6VwJEXSkZoN&item_author_type=1&utm_source=copy&utm_campaign=client_share&utm_medium=android&share_iid=7548836289719682821&share_link_id=5e16c40d-3a56-4800-97ac-841b12af2b68&share_app_id=1233&ugbiz_name=ACCOUNT&ug_btm=b8727%2Cb7360&social_share_type=5&enable_checksum=1', icon: 'tiktok' }
     ]
   },
   links: [

@@ -6,23 +6,30 @@ import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { BLOG_POSTS, CATEGORIES } from '../../shared/data';
+import { PortableText } from '@/components/PortableText';
+import { useBlogPostBySlug } from '@/lib/hooks';
 import NotFound from './not-found';
 
 export default function BlogPost() {
   const [, params] = useRoute('/blog/:slug');
-  const post = BLOG_POSTS.find(p => p.slug === params?.slug);
+  const { data: post, isLoading } = useBlogPostBySlug(params?.slug || '');
   
   const [liked, setLiked] = useState(false);
   const [bookmarked, setBookmarked] = useState(false);
   const [likes, setLikes] = useState(post?.reactions.likes || 0);
   const [bookmarks, setBookmarks] = useState(post?.reactions.bookmarks || 0);
 
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <p className="text-muted-foreground">Loading...</p>
+      </div>
+    );
+  }
+
   if (!post) {
     return <NotFound />;
   }
-
-  const category = CATEGORIES.find(c => c.id === post.categoryId);
 
   const handleLike = () => {
     setLiked(!liked);
@@ -57,9 +64,9 @@ export default function BlogPost() {
                 </Button>
               </Link>
 
-              {category && (
+              {post.category && (
                 <Badge className="mb-4 bg-primary text-primary-foreground">
-                  {category.name}
+                  {post.category.name}
                 </Badge>
               )}
 
@@ -105,15 +112,7 @@ export default function BlogPost() {
                 </div>
               </div>
 
-              <div 
-                className="prose prose-lg max-w-none
-                  prose-headings:font-serif prose-headings:text-foreground
-                  prose-h2:text-3xl prose-h2:font-semibold prose-h2:mt-12 prose-h2:mb-4
-                  prose-h3:text-2xl prose-h3:font-semibold prose-h3:mt-8 prose-h3:mb-3
-                  prose-p:text-foreground prose-p:leading-relaxed prose-p:mb-6
-                  prose-a:text-primary prose-a:no-underline hover:prose-a:underline"
-                dangerouslySetInnerHTML={{ __html: post.content }}
-              />
+              <PortableText value={post.content} />
             </div>
           </div>
         </article>
