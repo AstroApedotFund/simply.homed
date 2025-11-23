@@ -6,7 +6,7 @@ import sustainableLiving from '../attached_assets/Sustainable_living_blog_eec8d8
 import organizationPost from '../attached_assets/Organization_blog_post_88be11d8.png';
 import smartLiving from '../attached_assets/Smart_living_technology_170b2cb5.png';
 import decorStyle from '../attached_assets/Decor_and_style_cfec2976.png';
-import newsletterBg from '../attached_assets/Newsletter_background_image_0c5dd776.png';
+import newsletterBg from '../attached_assets/newsletterbg.jpg';
 
 export const SITE_NAME = "Simply Homed";
 
